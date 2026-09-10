@@ -61,3 +61,50 @@ def decrypt_text(encrypted_text, password):
     )
 
     return decrypted.decode("utf-8")
+def encrypt_file(input_path, output_path, password):
+    """Encrypt a file using AES-256-GCM."""
+
+    with open(input_path, "rb") as file:
+        data = file.read()
+
+    salt = os.urandom(16)
+    nonce = os.urandom(12)
+
+    key = derive_key(password, salt)
+
+    aes = AESGCM(key)
+
+    encrypted = aes.encrypt(
+        nonce,
+        data,
+        None
+    )
+
+    package = salt + nonce + encrypted
+
+    with open(output_path, "wb") as file:
+        file.write(package)
+
+
+def decrypt_file(input_path, output_path, password):
+    """Decrypt a file using AES-256-GCM."""
+
+    with open(input_path, "rb") as file:
+        package = file.read()
+
+    salt = package[:16]
+    nonce = package[16:28]
+    encrypted = package[28:]
+
+    key = derive_key(password, salt)
+
+    aes = AESGCM(key)
+
+    decrypted = aes.decrypt(
+        nonce,
+        encrypted,
+        None
+    )
+
+    with open(output_path, "wb") as file:
+        file.write(decrypted)
