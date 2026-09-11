@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="CipherVault - Secure client-side text and file encryption."
+    >
+
+    <title>CipherVault | Secure Encryption</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🔐</div>
+
+            <div>
+                <h1>CipherVault</h1>
+                <span>Secure Encryption</span>
+            </div>
+        </div>
+
+        <nav>
+
+            <button class="nav-item active" data-page="dashboard">
+                <span>🏠</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-page="text">
+                <span>🔐</span>
+                Text Encryption
+            </button>
+
+            <button class="nav-item" data-page="file">
+                <span>📁</span>
+                File Encryption
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="security-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>Security Active</strong>
+                    <small>AES-256-GCM</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboardPage" class="page active-page">
+
+            <header class="topbar">
+
+                <div>
+
+                    <div class="eyebrow">
+                        CIPHERVAULT SECURITY
+                    </div>
+
+                    <h2>Security Dashboard</h2>
+
+                    <p>
+                        Protect sensitive information with modern authenticated encryption.
+                    </p>
+
+                </div>
+
+                <div class="status-badge">
+                    <span>●</span>
+                    Secure
+                </div>
+
+            </header>
+
+
+            <div class="security-notice">
+
+                <div class="notice-icon">
+                    🛡️
+                </div>
+
+                <div>
+
+                    <strong>Your data stays in your browser</strong>
+
+                    <p>
+                        Encryption and decryption are performed locally.
+                        Your plaintext, files and password are not uploaded.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <section class="cards">
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="card-icon">🔒</div>
+                        <span class="card-label">ENCRYPTION</span>
+                    </div>
+
+                    <h3>AES-256-GCM</h3>
+
+                    <p>
+                        Authenticated encryption protects confidentiality
+                        and detects unauthorized modification.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="card-icon">🔑</div>
+                        <span class="card-label">KEY DERIVATION</span>
+                    </div>
+
+                    <h3>PBKDF2-SHA256</h3>
+
+                    <p>
+                        Passwords are converted into 256-bit encryption keys
+                        using 600,000 PBKDF2 iterations.
+                    </p>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="card-icon">📁</div>
+                        <span class="card-label">FILE SECURITY</span>
+                    </div>
+
+                    <h3>Local File Processing</h3>
+
+                    <p>
+                        Files can be encrypted and decrypted directly
+                        inside your browser.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <section class="quick-actions">
+
+                <h3>Quick Actions</h3>
+
+                <div class="quick-action-grid">
+
+                    <button
+                        class="quick-action"
+                        data-page="text"
+                    >
+                        <span>🔐</span>
+                        <strong>Encrypt Text</strong>
+                        <small>Protect a secret message</small>
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        data-page="file"
+                    >
+                        <span>📁</span>
+                        <strong>Encrypt File</strong>
+                        <small>Protect a local file</small>
+                    </button>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- TEXT PAGE -->
+        <section id="textPage" class="page">
+
+            <header class="topbar">
+
+                <div>
+
+                    <div class="eyebrow">
+                        CIPHERVAULT
+                    </div>
+
+                    <h2>Text Encryption</h2>
+
+                    <p>
+                        Encrypt or decrypt sensitive text using your password.
+                    </p>
+
+                </div>
+
+                <div class="local-badge">
+                    ● LOCAL
+                </div>
+
+            </header>
+
+
+            <section class="encryption-panel">
+
+                <div class="panel-header">
+
+                    <div class="panel-title-row">
+
+                        <div class="panel-icon">
+                            🔐
+                        </div>
+
+                        <div>
+                            <h2>Secure Text</h2>
+
+                            <p>
+                                AES-256-GCM encryption performed locally.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <div class="label-row">
+
+                        <label for="textInput">
+                            Your Text
+                        </label>
+
+                        <span id="characterCount">
+                            0 characters
+                        </span>
+
+                    </div>
+
+                    <textarea
+                        id="textInput"
+                        placeholder="Enter text to encrypt or encrypted data to decrypt..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="field">
+
+                    <div class="label-row">
+
+                        <label for="password">
+                            Encryption Password
+                        </label>
+
+                        <span id="passwordStatus">
+                            Not set
+                        </span>
+
+                    </div>
+
+
+                    <div class="password-container">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter a strong password"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            id="togglePassword"
+                            class="password-toggle"
+                            type="button"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+
+                    <div class="strength-container">
+
+                        <div class="strength-bars">
+
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+
+                        </div>
+
+                        <span id="strengthText">
+                            Password strength
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <button
+                        id="encryptBtn"
+                        class="primary-btn"
+                        type="button"
+                    >
+                        🔒 Encrypt
+                    </button>
+
+                    <button
+                        id="decryptBtn"
+                        class="secondary-btn"
+                        type="button"
+                    >
+                        🔓 Decrypt
+                    </button>
+
+                    <button
+                        id="clearBtn"
+                        class="clear-btn"
+                        type="button"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="statusMessage"
+                    class="status-message hidden"
+                ></div>
+
+
+                <div class="field output-field">
+
+                    <div class="label-row">
+
+                        <label for="output">
+                            Result
+                        </label>
+
+                        <button
+                            id="copyBtn"
+                            class="copy-btn"
+                            type="button"
+                        >
+                            📋 Copy
+                        </button>
+
+                    </div>
+
+                    <textarea
+                        id="output"
+                        readonly
+                        placeholder="Your encrypted or decrypted result will appear here..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="panel-footer">
+
+                    <div>🔐 AES-256-GCM</div>
+
+                    <div>🔑 PBKDF2 · 600,000 iterations</div>
+
+                    <div>🛡️ Browser-side processing</div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <!-- FILE PAGE -->
+        <section id="filePage" class="page">
+
+            <header class="topbar">
+
+                <div>
+
+                    <div class="eyebrow">
+                        CIPHERVAULT
+                    </div>
+
+                    <h2>File Encryption</h2>
+
+                    <p>
+                        Encrypt and decrypt files directly in your browser.
+                    </p>
+
+                </div>
+
+                <div class="local-badge">
+                    ● LOCAL
+                </div>
+
+            </header>
+
+
+            <section class="encryption-panel">
+
+                <div class="panel-header">
+
+                    <div class="panel-title-row">
+
+                        <div class="panel-icon">
+                            📁
+                        </div>
+
+                        <div>
+
+                            <h2>Secure File</h2>
+
+                            <p>
+                                Select a file to encrypt or decrypt.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FILE SELECTOR -->
+                <div class="file-drop-area" id="fileDropArea">
+
+                    <div class="file-drop-icon">
+                        📁
+                    </div>
+
+                    <h3>Select a file</h3>
+
+                    <p>
+                        Choose a file from your device.
+                    </p>
+
+                    <label
+                        for="fileInput"
+                        class="file-select-btn"
+                    >
+                        Choose File
+                    </label>
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        hidden
+                    >
+
+                </div>
+
+
+                <!-- SELECTED FILE -->
+                <div
+                    id="selectedFile"
+                    class="selected-file hidden"
+                >
+
+                    <div class="selected-file-icon">
+                        📄
+                    </div>
+
+                    <div class="selected-file-info">
+
+                        <strong id="fileName">
+                            No file selected
+                        </strong>
+
+                        <small id="fileSize">
+                            0 KB
+                        </small>
+
+                    </div>
+
+                    <button
+                        id="removeFileBtn"
+                        class="remove-file-btn"
+                        type="button"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+
+                <!-- FILE PASSWORD -->
+                <div class="field">
+
+                    <div class="label-row">
+
+                        <label for="filePassword">
+                            Encryption Password
+                        </label>
+
+                        <span id="filePasswordStatus">
+                            Not set
+                        </span>
+
+                    </div>
+
+
+                    <div class="password-container">
+
+                        <input
+                            type="password"
+                            id="filePassword"
+                            placeholder="Enter a strong password"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            id="toggleFilePassword"
+                            class="password-toggle"
+                            type="button"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+
+                    <div class="strength-container">
+
+                        <div class="file-strength-bars">
+
+                            <span class="file-strength-bar"></span>
+                            <span class="file-strength-bar"></span>
+                            <span class="file-strength-bar"></span>
+                            <span class="file-strength-bar"></span>
+
+                        </div>
+
+                        <span id="fileStrengthText">
+                            Password strength
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FILE ACTIONS -->
+                <div class="button-row">
+
+                    <button
+                        id="encryptFileBtn"
+                        class="primary-btn"
+                        type="button"
+                    >
+                        🔒 Encrypt File
+                    </button>
+
+                    <button
+                        id="decryptFileBtn"
+                        class="secondary-btn"
+                        type="button"
+                    >
+                        🔓 Decrypt File
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="fileStatusMessage"
+                    class="status-message hidden"
+                ></div>
+
+
+                <div class="file-security-info">
+
+                    <div>
+                        <strong>How it works</strong>
+                    </div>
+
+                    <ul>
+
+                        <li>
+                            A random salt is generated for every file.
+                        </li>
+
+                        <li>
+                            A random nonce is generated for every encryption.
+                        </li>
+
+                        <li>
+                            AES-256-GCM protects the file.
+                        </li>
+
+                        <li>
+                            The original file is never uploaded to a server.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="panel-footer">
+
+                    <div>🔐 AES-256-GCM</div>
+
+                    <div>🔑 PBKDF2 · 600,000 iterations</div>
+
+                    <div>📁 Local file processing</div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+        <footer class="app-footer">
+
+            <span>
+                CipherVault
+            </span>
+
+            <span>
+                Secure encryption for educational and personal use
+            </span>
+
+            <span>
+                Web v1.0
+            </span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
